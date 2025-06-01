@@ -8,13 +8,13 @@ export default [
         ignores: ['.nuxt/**/*', 'node_modules/**/*', 'dist/**/*', 'app.vue']
     },
     {
-        files: ['**/*.{ts,js,vue}'],
+        files: ['**/*.vue'],
         languageOptions: {
-            parser: tsParser,
+            parser: vueParser,
             parserOptions: {
+                parser: tsParser, // Vue parser использует TS как под-парсер
                 ecmaVersion: 'latest',
-                sourceType: 'module',
-                project: './tsconfig.json'
+                sourceType: 'module'
             }
         },
         plugins: {
@@ -25,6 +25,20 @@ export default [
         rules: {
             'vue/multi-word-component-names': 'off',
             'nuxt/no-cjs-in-config': 'off'
+        }
+    },
+    {
+        files: ['**/*.{ts,js}'],
+        languageOptions: {
+            parser: tsParser,
+            parserOptions: {
+                ecmaVersion: 'latest',
+                sourceType: 'module'
+            }
         },
+        plugins: {
+            '@typescript-eslint': tseslint
+        },
+        rules: {}
     }
 ]
