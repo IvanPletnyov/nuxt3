@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfiledev
+      args:
+        DOCKER_USER_ID: ${DOCKER_USER_ID}
+        DOCKER_GROUP_ID: ${DOCKER_GROUP_ID}
+    env_file:
+      - .env
+    ports:
+      - "${DOCKER_NODE_EXTERNAL_HOST}:3000"
+    command: $NODE_MAIN_COMMAND
+    restart: always
+    volumes:
+      - .:/app
+    stop_signal: SIGKILL
