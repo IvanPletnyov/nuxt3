@@ -16,3 +16,5 @@ RUN apk add --no-cache  \
       curl && \
     addgroup --gid $DOCKER_GROUP_ID app &> /dev/null || echo "Group $DOCKER_GROUP_ID already exists." && \
     adduser --uid $DOCKER_USER_ID --ingroup app --no-create-home --shell /bin/bash app &> /dev/null || echo "User $DOCKER_USER_ID already exists."
+
+USER $DOCKER_USER_ID:$DOCKER_GROUP_ID
