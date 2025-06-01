@@ -5,7 +5,7 @@ define restart_docker
 	@$(MAKE) up_dev
 endef
 
-SHELL := /bin/sh
+SHELL := /bin/bash
 APP_SERVICE := node
 PROJECT_PATH := $(CURDIR)
 CURRENT_USER := $(shell id -u)
