@@ -18,8 +18,8 @@ init:
 	@$(MAKE) build
 	@sed -i "s|DOCKER_USER_ID=.*|DOCKER_USER_ID=$(CURRENT_USER)|g" .env
 	@sed -i "s|DOCKER_GROUP_ID=.*|DOCKER_GROUP_ID=$(CURRENT_GROUP)|g" .env
-	@grep -v "$(NODE_APP_DOMAIN)" /etc/hosts | sudo tee /etc/hosts > /dev/null
-	@echo "127.0.0.1 $(NODE_APP_DOMAIN)" | sudo tee -a /etc/hosts > /dev/null
+	@grep -v "$(NUXT_APP_DOMAIN)" /etc/hosts | sudo tee /etc/hosts > /dev/null
+	@echo "127.0.0.1 $(NUXT_APP_DOMAIN)" | sudo tee -a /etc/hosts > /dev/null
 
 build:
 	@docker-compose build
