@@ -1,18 +1,20 @@
+// eslint.config.js
+import vueParser from 'vue-eslint-parser'
+import tsParser from '@typescript-eslint/parser'
+import tseslint from '@typescript-eslint/eslint-plugin'
 import eslintPluginVue from 'eslint-plugin-vue'
 import eslintPluginNuxt from 'eslint-plugin-nuxt'
-import tseslint from '@typescript-eslint/eslint-plugin'
-import tsParser from '@typescript-eslint/parser'
 
 export default [
     {
-        ignores: ['.nuxt/**/*', 'node_modules/**/*', 'dist/**/*', 'app.vue']
+        ignores: ['.nuxt', 'dist', 'node_modules']
     },
     {
         files: ['**/*.vue'],
         languageOptions: {
             parser: vueParser,
             parserOptions: {
-                parser: tsParser, // Vue parser использует TS как под-парсер
+                parser: tsParser,
                 ecmaVersion: 'latest',
                 sourceType: 'module'
             }
@@ -24,7 +26,9 @@ export default [
         },
         rules: {
             'vue/multi-word-component-names': 'off',
-            'nuxt/no-cjs-in-config': 'off'
+            '@typescript-eslint/no-unused-vars': 'warn',
+            'semi': ['warn', 'never'],
+            'no-multiple-empty-lines': ['warn', { max: 1 }]
         }
     },
     {
@@ -39,6 +43,8 @@ export default [
         plugins: {
             '@typescript-eslint': tseslint
         },
-        rules: {}
+        rules: {
+            '@typescript-eslint/no-unused-vars': 'warn'
+        }
     }
 ]

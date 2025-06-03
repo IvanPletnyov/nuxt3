@@ -9,7 +9,7 @@ interface Props {
   label: string
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
 
 const emit = defineEmits<{
   (event: 'clicked'): void
